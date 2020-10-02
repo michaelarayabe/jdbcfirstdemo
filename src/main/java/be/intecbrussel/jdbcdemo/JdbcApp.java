@@ -5,10 +5,11 @@ import java.sql.*;
 
 public class JdbcApp {
 
-    public static void main(String[] args) {
-        String connectionString = "jdbc:mysql://localhost:3306/beersdb";
+    public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
+       String connectionString = "jdbc:mysql://localhost:3306/beersdb";
         String username = "root";
         String password = "root";
+
 
     try (Connection connection = DriverManager.getConnection(connectionString, username, password)) {
         // ask for a statement
@@ -23,6 +24,8 @@ public class JdbcApp {
     } catch (SQLException exception) {
         exception.printStackTrace();
     }
+
+
 
     }
 

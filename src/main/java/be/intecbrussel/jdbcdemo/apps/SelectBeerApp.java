@@ -1,9 +1,9 @@
-package be.intecbrussel.jdbcdemo;
+package be.intecbrussel.jdbcdemo.apps;
 
 import java.io.IOException;
 import java.sql.*;
 
-public class JdbcApp {
+public class SelectBeerApp {
 
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, SQLException {
        String connectionString = "jdbc:mysql://localhost:3306/beersdb";

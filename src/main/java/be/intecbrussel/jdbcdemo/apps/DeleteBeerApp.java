@@ -1,8 +1,11 @@
-package be.intecbrussel.jdbcdemo;
+package be.intecbrussel.jdbcdemo.apps;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public class AddBeerApp {
+public class DeleteBeerApp {
 
     public static void main(String[] args) {
         String connectionString = "jdbc:mysql://localhost:3306/beersdb";
@@ -14,10 +17,12 @@ public class AddBeerApp {
             // ask for a statement
             Statement statement = connection.createStatement();
             //use this statement to execute a query
-            statement.execute("insert into beers(name,alcohol) value ('bartbeer',14)");
+            statement.execute("DELETE from beers where name like '%Bert%'");
             // do database things
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
     }
+
+
 }

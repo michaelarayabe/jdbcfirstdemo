@@ -27,26 +27,27 @@ public class JavaBeersCafeApp {
         //System.out.println(beerDao.readBeer("Very Diest"));
 
         //get beer from db
-        Beer beerWeWillUpdate = beerDao.readBeer(1440);
+        //Beer beerWeWillUpdate = beerDao.readBeer(1440);
         //print it out
-        System.out.println(beerWeWillUpdate);
+        //System.out.println(beerWeWillUpdate);
         //change stock value for beer
-        beerWeWillUpdate.setStock(beerWeWillUpdate.getStock()-1);
+        //beerWeWillUpdate.setStock(beerWeWillUpdate.getStock()-1);
         //change alcohol value
-        beerWeWillUpdate.setAlcoholPercentage(10);
+        //beerWeWillUpdate.setAlcoholPercentage(10);
         //update beer in db
-        beerDao.updateBeer(beerWeWillUpdate);
+        //beerDao.updateBeer(beerWeWillUpdate);
         //get beer from db
-        beerWeWillUpdate = beerDao.readBeer(1440);
+        //beerWeWillUpdate = beerDao.readBeer(1440);
         //print it out
-        System.out.println(beerWeWillUpdate);
+        //System.out.println(beerWeWillUpdate);
 
         //find beer that you would like to delete
-        Beer beerWeWillDelete = beerDao.readBeer(1559);
+        //Beer beerWeWillDelete = beerDao.readBeer(1559);
         //delete beer with given id
-        beerDao.deleteBeer(beerWeWillDelete);
+        //beerDao.deleteBeer(beerWeWillDelete);
 
-
+        System.out.println("printing all beers: ");
+        beerDao.readAllBeers().stream().forEach(System.out::println);
     }
 
 

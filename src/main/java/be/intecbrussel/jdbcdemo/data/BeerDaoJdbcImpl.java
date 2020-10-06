@@ -3,6 +3,8 @@ package be.intecbrussel.jdbcdemo.data;
 import be.intecbrussel.jdbcdemo.model.Beer;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BeerDaoJdbcImpl implements BeerDao {
     String CONNECTIONSTRING = "jdbc:mysql://localhost:3306/beersdb";
@@ -111,5 +113,40 @@ public class BeerDaoJdbcImpl implements BeerDao {
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
+    }
+
+    @Override
+    public List<Beer> readAllBeers() {
+        List<Beer> beerList = new ArrayList<>();
+
+        try(Connection connection=DriverManager.getConnection(CONNECTIONSTRING,USERNAME,PASSWORD)){
+            PreparedStatement statement = connection.prepareStatement("select * from beers");
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()){
+                Beer beer = new Beer();
+                beer.setBeerName(resultSet.getString("name"));
+                beer.setAlcoholPercentage(resultSet.getDouble("alcohol"));
+                beer.setPrice(resultSet.getDouble("Price"));
+                beer.setStock(resultSet.getInt("stock"));
+                beer.setId(resultSet.getInt("id"));
+                beerList.add(beer);
+            }
+            resultSet.close();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return beerList;
+    }
+
+    @Override
+    public List<Beer> readAllBeersHavingAlcoholLowerThan(double maxAlcohol) {
+        return null;
+    }
+
+    @Override
+    public List<Beer> readAllBeersHavingStockHigherThan(int minimumStock) {
+        return null;
     }
 }

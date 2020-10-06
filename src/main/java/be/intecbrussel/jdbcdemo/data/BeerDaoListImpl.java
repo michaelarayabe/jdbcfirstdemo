@@ -5,7 +5,9 @@ import be.intecbrussel.jdbcdemo.model.Beer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+/*
+Is DEPRICATED
+ */
 public class BeerDaoListImpl implements BeerDao{
     private List<Beer> beerdb = new ArrayList<>();
 
@@ -63,5 +65,20 @@ and so we end this tale
     @Override
     public void deleteBeer(Beer beer) {
         beerdb.remove(beer);
+    }
+
+    @Override
+    public List<Beer> readAllBeers() {
+        return beerdb;
+    }
+
+    @Override
+    public List<Beer> readAllBeersHavingAlcoholLowerThan(double maxAlcohol) {
+        return null;
+    }
+
+    @Override
+    public List<Beer> readAllBeersHavingStockHigherThan(int minimumStock) {
+        return null;
     }
 }

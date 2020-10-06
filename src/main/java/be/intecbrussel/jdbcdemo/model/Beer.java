@@ -62,7 +62,7 @@ public class Beer {
     }
     @Override
     public String toString(){
-        return " Beer with: Beername = " + beerName+", Alcoholprecentage = "+ alcoholPercentage
+        return " Beer with: id:" +id +", Beername = " + beerName+", Alcoholprecentage = "+ alcoholPercentage
                 + ", Price = " + price + ", Stock = " +stock;
 
     }

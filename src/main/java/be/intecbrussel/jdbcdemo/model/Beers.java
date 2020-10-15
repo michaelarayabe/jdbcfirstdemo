@@ -1,22 +1,27 @@
 package be.intecbrussel.jdbcdemo.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
-public class Beer {
+@Entity
+@Table
+public class Beers {
 
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String beerName;
-    private double alcoholPercentage;
+    private String name;
+    private double alcohol;
     private double price;
     private int stock;
 
-    public Beer() {
+    public Beers() {
     }
 
-    public Beer(String beerName, double alcoholPercentage, double price, int stock) {
-        this.beerName = beerName;
-        this.alcoholPercentage = alcoholPercentage;
+    public Beers(String name, double alcohol, double price, int stock) {
+        this.name = name;
+        this.alcohol = alcohol;
         this.price = price;
         this.stock = stock;
     }
@@ -30,19 +35,19 @@ public class Beer {
     }
 
     public String getBeerName() {
-        return beerName;
+        return name;
     }
 
     public void setBeerName(String beerName) {
-        this.beerName = beerName;
+        this.name = beerName;
     }
 
     public double getAlcoholPercentage() {
-        return alcoholPercentage;
+        return alcohol;
     }
 
     public void setAlcoholPercentage(double alcoholPercentage) {
-        this.alcoholPercentage = alcoholPercentage;
+        this.alcohol = alcoholPercentage;
     }
 
     public double getPrice() {
@@ -62,7 +67,7 @@ public class Beer {
     }
     @Override
     public String toString(){
-        return " Beer with: id:" +id +", Beername = " + beerName+", Alcoholprecentage = "+ alcoholPercentage
+        return " Beer with: id:" +id +", Beername = " + name+", Alcoholprecentage = "+ alcohol
                 + ", Price = " + price + ", Stock = " +stock;
 
     }
@@ -71,15 +76,15 @@ public class Beer {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Beer beer = (Beer) o;
-        return Double.compare(beer.alcoholPercentage, alcoholPercentage) == 0 &&
+        Beers beer = (Beers) o;
+        return Double.compare(beer.alcohol, alcohol) == 0 &&
                 Double.compare(beer.price, price) == 0 &&
                 stock == beer.stock &&
-                Objects.equals(beerName, beer.beerName);
+                Objects.equals(name, beer.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(beerName, alcoholPercentage, price, stock);
+        return Objects.hash(name, alcohol, price, stock);
     }
 }

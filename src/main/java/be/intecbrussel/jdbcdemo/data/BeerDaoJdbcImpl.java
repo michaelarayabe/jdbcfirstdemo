@@ -1,6 +1,6 @@
 package be.intecbrussel.jdbcdemo.data;
 
-import be.intecbrussel.jdbcdemo.model.Beer;
+import be.intecbrussel.jdbcdemo.model.Beers;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public class BeerDaoJdbcImpl implements BeerDao {
 
 
     @Override
-    public void createBeer(Beer beer) {
+    public void createBeer(Beers beer) {
 
         try (Connection connection = DriverManager.getConnection(CONNECTIONSTRING, USERNAME, PASSWORD)) {
             // ask for a statement
@@ -31,8 +31,8 @@ public class BeerDaoJdbcImpl implements BeerDao {
     }
 
     @Override
-    public Beer readBeer(int beerId) {
-        Beer beer = null;
+    public Beers readBeer(int beerId) {
+        Beers beer = null;
         try (Connection connection = DriverManager.getConnection(CONNECTIONSTRING, USERNAME, PASSWORD)) {
             // ask for a statement
             PreparedStatement statement = connection.prepareStatement("select * from beers where Id=?");
@@ -41,7 +41,7 @@ public class BeerDaoJdbcImpl implements BeerDao {
             ResultSet resultSet = statement.executeQuery();
             // do database things
             if (resultSet.next()){
-                beer = new Beer();
+                beer = new Beers();
                 beer.setBeerName(resultSet.getString("name"));
                 beer.setAlcoholPercentage(resultSet.getDouble("alcohol"));
                 beer.setPrice(resultSet.getDouble("Price"));
@@ -58,8 +58,8 @@ public class BeerDaoJdbcImpl implements BeerDao {
     }
 
     @Override
-    public Beer readBeer(String beerName) {
-        Beer beer = null;
+    public Beers readBeer(String beerName) {
+        Beers beer = null;
         try (Connection connection = DriverManager.getConnection(CONNECTIONSTRING, USERNAME, PASSWORD)) {
             // ask for a statement
             PreparedStatement statement = connection.prepareStatement("select * from beers where Name=?");
@@ -68,7 +68,7 @@ public class BeerDaoJdbcImpl implements BeerDao {
             ResultSet resultSet = statement.executeQuery();
             // do database things
             if (resultSet.next()){
-                beer = new Beer();
+                beer = new Beers();
                 beer.setBeerName(resultSet.getString("name"));
                 beer.setAlcoholPercentage(resultSet.getDouble("alcohol"));
                 beer.setPrice(resultSet.getDouble("Price"));
@@ -84,7 +84,7 @@ public class BeerDaoJdbcImpl implements BeerDao {
     }
 
     @Override
-    public void updateBeer(Beer beer) {
+    public void updateBeer(Beers beer) {
         try (Connection connection = DriverManager.getConnection(CONNECTIONSTRING, USERNAME, PASSWORD)) {
             // ask for a statement
             PreparedStatement statement = connection.prepareStatement("update beers set name=? ,alcohol=?,Price=?,Stock=? where id =?");
@@ -102,7 +102,12 @@ public class BeerDaoJdbcImpl implements BeerDao {
     }
 
     @Override
-    public void deleteBeer(Beer beer) {
+    public void updateBeer(int beerId) {
+
+    }
+
+    @Override
+    public void deleteBeer(Beers beer) {
         try (Connection connection = DriverManager.getConnection(CONNECTIONSTRING, USERNAME, PASSWORD)) {
             // ask for a statement
             PreparedStatement statement = connection.prepareStatement("DELETE from beers where Id = ?");
@@ -116,15 +121,15 @@ public class BeerDaoJdbcImpl implements BeerDao {
     }
 
     @Override
-    public List<Beer> readAllBeers() {
-        List<Beer> beerList = new ArrayList<>();
+    public List<Beers> readAllBeers() {
+        List<Beers> beerList = new ArrayList<>();
 
         try(Connection connection=DriverManager.getConnection(CONNECTIONSTRING,USERNAME,PASSWORD)){
             PreparedStatement statement = connection.prepareStatement("select * from beers");
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()){
-                Beer beer = new Beer();
+                Beers beer = new Beers();
                 beer.setBeerName(resultSet.getString("name"));
                 beer.setAlcoholPercentage(resultSet.getDouble("alcohol"));
                 beer.setPrice(resultSet.getDouble("Price"));
@@ -141,12 +146,12 @@ public class BeerDaoJdbcImpl implements BeerDao {
     }
 
     @Override
-    public List<Beer> readAllBeersHavingAlcoholLowerThan(double maxAlcohol) {
+    public List<Beers> readAllBeersHavingAlcoholLowerThan(double maxAlcohol) {
         return null;
     }
 
     @Override
-    public List<Beer> readAllBeersHavingStockHigherThan(int minimumStock) {
+    public List<Beers> readAllBeersHavingStockHigherThan(int minimumStock) {
         return null;
     }
 }

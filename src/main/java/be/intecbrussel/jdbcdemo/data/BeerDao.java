@@ -1,18 +1,19 @@
 package be.intecbrussel.jdbcdemo.data;
 
-import be.intecbrussel.jdbcdemo.model.Beer;
+import be.intecbrussel.jdbcdemo.model.Beers;
 
 import java.util.List;
 
 public interface BeerDao {
 
-    void createBeer(Beer beer);
-    Beer readBeer(int beerId);
-    Beer readBeer(String beerName);
-    void updateBeer(Beer beer);
-    void deleteBeer(Beer beer);
+    void createBeer(Beers beer);
+    Beers readBeer(int beerId);
+    Beers readBeer(String beerName);
+    void updateBeer(Beers beer);
+    void updateBeer(int beerId);
+    void deleteBeer(Beers beer);
 
-    List<Beer> readAllBeers();
-    List<Beer> readAllBeersHavingAlcoholLowerThan(double maxAlcohol);
-    List<Beer> readAllBeersHavingStockHigherThan(int minimumStock);
+    List<Beers> readAllBeers();
+    List<Beers> readAllBeersHavingAlcoholLowerThan(double maxAlcohol);
+    List<Beers> readAllBeersHavingStockHigherThan(int minimumStock);
 }

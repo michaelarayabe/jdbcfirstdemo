@@ -34,6 +34,8 @@ public class JavaBeersCafeApp {
 
         brewerDao.updateBrewer(1);
 
+        beerDao.updateBeer("Alken");
+
     }
 
 

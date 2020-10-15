@@ -11,6 +11,7 @@ public interface BeerDao {
     Beers readBeer(String beerName);
     void updateBeer(Beers beer);
     void updateBeer(int beerId);
+    void updateBeer(String beerName);
     void deleteBeer(Beers beer);
 
     List<Beers> readAllBeers();

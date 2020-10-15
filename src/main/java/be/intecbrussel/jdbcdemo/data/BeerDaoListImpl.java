@@ -68,6 +68,11 @@ and so we end this tale
     }
 
     @Override
+    public void updateBeer(String beerName) {
+
+    }
+
+    @Override
     public void deleteBeer(Beers beer) {
         beerdb.remove(beer);
     }

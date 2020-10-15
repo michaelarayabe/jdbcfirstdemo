@@ -107,6 +107,11 @@ public class BeerDaoJdbcImpl implements BeerDao {
     }
 
     @Override
+    public void updateBeer(String beerName) {
+
+    }
+
+    @Override
     public void deleteBeer(Beers beer) {
         try (Connection connection = DriverManager.getConnection(CONNECTIONSTRING, USERNAME, PASSWORD)) {
             // ask for a statement

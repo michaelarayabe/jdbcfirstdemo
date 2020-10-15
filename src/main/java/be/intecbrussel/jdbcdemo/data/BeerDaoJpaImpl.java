@@ -54,15 +54,20 @@ public class BeerDaoJpaImpl implements BeerDao{
 
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction entityTransaction = entityManager.getTransaction();
+        entityTransaction.begin();
+        Beers managedBeer = entityManager.merge(beer);
 
+
+        /*
+        //Tweede manier te doen
         int beerID = beer.getId();
         Beers beers = entityManager.find(Beers.class,beerID);
-
-        entityTransaction.begin();
         beers.setBeerName("anonBeer");
         beers.setPrice(300);
         beers.setAlcoholPercentage(300);
         beers.setStock(300);
+
+         */
         entityTransaction.commit();
     }
 
@@ -83,6 +88,42 @@ public class BeerDaoJpaImpl implements BeerDao{
         beers.setStock(200);
 
         entityTransaction.commit();
+    }
+
+    @Override
+    public void updateBeer(String beerName) {
+
+        EntityManagerFactory emf = EntityManagerFactoryProvider.getInstance().getEmf();
+
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction et = em.getTransaction();
+
+        TypedQuery<Beers> typedQuery = em.createQuery("select beers from Beers beers",Beers.class);
+
+        List<Beers> list = typedQuery.getResultList();
+
+        Beers savedBeer = null;
+
+        for(Beers b : list){
+            if(b.getBeerName().equals(beerName)){
+                savedBeer = b;
+            }
+
+        }
+
+        System.out.println(savedBeer);
+
+
+        Beers beers = em.find(Beers.class,savedBeer.getId() );
+
+        et.begin();
+
+        beers.setBeerName(beerName);
+        beers.setStock(10);
+        beers.setAlcoholPercentage(10);
+        beers.setPrice(10);
+
+        et.commit();
     }
 
     @Override
